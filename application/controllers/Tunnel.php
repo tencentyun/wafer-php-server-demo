@@ -2,7 +2,7 @@
 
 use \QCloud_WeApp_SDK\Tunnel\TunnelService as TunnelService;
 
-require('/../business/ChatTunnelHandler.php');
+require APPPATH.'business/ChatTunnelHandler.php';
 
 class Tunnel extends CI_Controller {
     public function index() {
