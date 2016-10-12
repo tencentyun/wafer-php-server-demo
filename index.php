@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 设置时区
+ */
 date_default_timezone_set('Asia/Shanghai');
 
 /**
@@ -307,6 +310,13 @@ switch (ENVIRONMENT)
 	}
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+
+/*
+ * --------------------------------------------------------------------
+ * LOAD `global.func.php`
+ * --------------------------------------------------------------------
+ */
+require_once APPPATH.'helpers/global.func.php';
 
 /*
  * --------------------------------------------------------------------
