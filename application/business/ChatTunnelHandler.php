@@ -92,10 +92,13 @@ class ChatTunnelHandler implements ITunnelHandler {
 
         self::saveData($data);
 
-        self::broadcast('people', array(
-            'total' => count($data['connectedTunnelIds']),
-            'leave' => !empty($leaveUser) ? $leaveUser : 'stranger',
-        ));
+        // 聊天室没有人了（即无信道ID）不再需要广播消息
+        if (count($data['connectedTunnelIds']) > 0) {
+            self::broadcast('people', array(
+                'total' => count($data['connectedTunnelIds']),
+                'leave' => !empty($leaveUser) ? $leaveUser : 'stranger',
+            ));
+        }
     }
 
     /**
