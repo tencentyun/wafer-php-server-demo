@@ -38,7 +38,7 @@ class ChatTunnelHandler implements ITunnelHandler {
 
         self::broadcast('people', array(
             'total' => count($data['connectedTunnelIds']),
-            'enter' => $data['userMap'][$tunnelId],
+            'enter' => !empty($data['userMap'][$tunnelId]) ? $data['userMap'][$tunnelId] : 'stranger',
         ));
     }
 
@@ -88,7 +88,7 @@ class ChatTunnelHandler implements ITunnelHandler {
 
         self::broadcast('people', array(
             'total' => count($data['connectedTunnelIds']),
-            'leave' => $leaveUser,
+            'leave' => !empty($leaveUser) ? $leaveUser : 'stranger',
         ));
     }
 
