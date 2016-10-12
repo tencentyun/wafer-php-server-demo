@@ -2,7 +2,6 @@
 
 use \QCloud_WeApp_SDK\Tunnel\ITunnelHandler as ITunnelHandler;
 use \QCloud_WeApp_SDK\Tunnel\TunnelService as TunnelService;
-use \QCloud_WeApp_SDK\Helper\Logger as Logger;
 
 /**
  * 实现 WebSocket 信道处理器
@@ -15,6 +14,8 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 会调用 onRequest 方法，此时可以把信道 ID 和用户信息关联起来
      */
     public function onRequest($tunnelId, $userInfo) {
+        debug('ChatTunnelHandler[onRequest] =>', compact('tunnelId', 'userInfo'));
+
         $data = self::loadData();
 
         // 保存 信道ID => 用户信息 的映射
@@ -29,7 +30,8 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 此时通知所有其它在线的用户当前总人数以及刚加入的用户是谁
      */
     public function onConnect($tunnelId) {
-        Logger::debug('onConnect tunnelId =>', $tunnelId);
+        debug('ChatTunnelHandler[onConnect] =>', compact('tunnelId'));
+
         $data = self::loadData();
         $data['connectedTunnelIds'][] = $tunnelId;
         self::saveData($data);
@@ -47,6 +49,8 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 我们把这个发言的信息广播到所有在线的 WebSocket 信道上
      */
     public function onMessage($tunnelId, $type, $message) {
+        debug('ChatTunnelHandler[onMessage] =>', compact('tunnelId', 'type', 'message'));
+
         switch ($type) {
         case 'speak':
             $data = self::loadData();
@@ -65,7 +69,8 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 会调用该方法，此时可以进行清理及通知操作
      */
     public function onClose($tunnelId) {
-        Logger::debug('onClose tunnelId =>', $tunnelId);
+        debug('ChatTunnelHandler[onClose] =>', compact('tunnelId'));
+
         $data = self::loadData();
         $leaveUser = NULL;
 
