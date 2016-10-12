@@ -48,8 +48,8 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 在本示例，我们处理 `speak` 类型的消息，该消息表示有用户发言。
      * 我们把这个发言的信息广播到所有在线的 WebSocket 信道上
      */
-    public function onMessage($tunnelId, $type, $message) {
-        debug('ChatTunnelHandler[onMessage] =>', compact('tunnelId', 'type', 'message'));
+    public function onMessage($tunnelId, $type, $content) {
+        debug('ChatTunnelHandler[onMessage] =>', compact('tunnelId', 'type', 'content'));
 
         switch ($type) {
         case 'speak':
@@ -57,7 +57,7 @@ class ChatTunnelHandler implements ITunnelHandler {
 
             self::broadcast('speak', array(
                 'who' => $data['userMap'][$tunnelId],
-                'word' => $message['word'],
+                'word' => $content['word'],
             ));
             break;
         }
@@ -93,14 +93,11 @@ class ChatTunnelHandler implements ITunnelHandler {
     }
 
     /**
-     * 调用
-     * @param  [type] $type    [description]
-     * @param  [type] $message [description]
-     * @return [type]          [description]
+     * 调用 TunnelService::broadcast() 进行广播
      */
-    private static function broadcast($type, $message) {
+    private static function broadcast($type, $content) {
         $data = self::loadData();
-        TunnelService::broadcast($data['connectedTunnelIds'], $type, $message);
+        TunnelService::broadcast($data['connectedTunnelIds'], $type, $content);
     }
 
     /**
