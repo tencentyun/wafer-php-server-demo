@@ -33,13 +33,19 @@ class ChatTunnelHandler implements ITunnelHandler {
         debug('ChatTunnelHandler[onConnect] =>', compact('tunnelId'));
 
         $data = self::loadData();
-        $data['connectedTunnelIds'][] = $tunnelId;
-        self::saveData($data);
 
-        self::broadcast('people', array(
-            'total' => count($data['connectedTunnelIds']),
-            'enter' => !empty($data['userMap'][$tunnelId]) ? $data['userMap'][$tunnelId] : 'stranger',
-        ));
+        if (array_key_exists($tunnelId, $data['userMap'])) {
+            $data['connectedTunnelIds'][] = $tunnelId;
+            self::saveData($data);
+
+            self::broadcast('people', array(
+                'total' => count($data['connectedTunnelIds']),
+                'enter' => $data['userMap'][$tunnelId],
+            ));
+
+        } else {
+            Logger::debug("Unknown `tunnelId`: {$tunnelId} was coming, ignore directly");
+        }
     }
 
     /**
