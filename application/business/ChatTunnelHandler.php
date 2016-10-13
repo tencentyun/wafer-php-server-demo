@@ -44,7 +44,8 @@ class ChatTunnelHandler implements ITunnelHandler {
             ));
 
         } else {
-            Logger::debug("Unknown `tunnelId`: {$tunnelId} was coming, ignore directly");
+            Logger::debug("Unknown tunnelId({$tunnelId}) was connectd, close it");
+            self::closeTunnel($tunnelId);
         }
     }
 
@@ -61,10 +62,14 @@ class ChatTunnelHandler implements ITunnelHandler {
         case 'speak':
             $data = self::loadData();
 
-            self::broadcast('speak', array(
-                'who' => $data['userMap'][$tunnelId],
-                'word' => $content['word'],
-            ));
+            if (isset($data['userMap'][$tunnelId])) {
+                self::broadcast('speak', array(
+                    'who' => $data['userMap'][$tunnelId],
+                    'word' => $content['word'],
+                ));
+            } else {
+                self::closeTunnel($tunnelId);
+            }
             break;
         }
     }
@@ -107,6 +112,14 @@ class ChatTunnelHandler implements ITunnelHandler {
     private static function broadcast($type, $content) {
         $data = self::loadData();
         TunnelService::broadcast($data['connectedTunnelIds'], $type, $content);
+    }
+
+    /**
+     * 调用 TunnelService::closeTunnel() 关闭信道
+     * @param  String $tunnelId 信道ID
+     */
+    private static function closeTunnel($tunnelId) {
+        TunnelService::closeTunnel($tunnelId);
     }
 
     /**
