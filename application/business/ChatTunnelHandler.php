@@ -16,12 +16,14 @@ class ChatTunnelHandler implements ITunnelHandler {
     public function onRequest($tunnelId, $userInfo) {
         debug('ChatTunnelHandler[onRequest] =>', compact('tunnelId', 'userInfo'));
 
-        $data = self::loadData();
+        if (is_array($userInfo)) {
+            $data = self::loadData();
 
-        // 保存 信道ID => 用户信息 的映射
-        $data['userMap'][$tunnelId] = $userInfo;
+            // 保存 信道ID => 用户信息 的映射
+            $data['userMap'][$tunnelId] = $userInfo;
 
-        self::saveData($data);
+            self::saveData($data);
+        }
     }
 
     /**
