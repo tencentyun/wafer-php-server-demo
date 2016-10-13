@@ -320,10 +320,10 @@ require_once APPPATH.'helpers/global.func.php';
 
 /*
  * --------------------------------------------------------------------
- * LOAD `QCloud_WeApp_SDK`
+ * LOAD and SETUP `QCLOUD SDK CONFIGURATION`
  * --------------------------------------------------------------------
  */
-require_once APPPATH.'third_party/QCloud_WeApp_SDK/AutoLoader.php';
+require_once './install_qcloud_sdk.php';
 
 /*
  * --------------------------------------------------------------------
