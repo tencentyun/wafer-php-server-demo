@@ -15,8 +15,6 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 会调用 onRequest 方法，此时可以把信道 ID 和用户信息关联起来
      */
     public function onRequest($tunnelId, $userInfo) {
-        debug('ChatTunnelHandler[onRequest] =>', compact('tunnelId', 'userInfo'));
-
         if (is_array($userInfo)) {
             $data = self::loadData();
 
@@ -33,8 +31,6 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 此时通知所有其它在线的用户当前总人数以及刚加入的用户是谁
      */
     public function onConnect($tunnelId) {
-        debug('ChatTunnelHandler[onConnect] =>', compact('tunnelId'));
-
         $data = self::loadData();
 
         if (array_key_exists($tunnelId, $data['userMap'])) {
@@ -59,8 +55,6 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 我们把这个发言的信息广播到所有在线的 WebSocket 信道上
      */
     public function onMessage($tunnelId, $type, $content) {
-        debug('ChatTunnelHandler[onMessage] =>', compact('tunnelId', 'type', 'content'));
-
         switch ($type) {
         case 'speak':
             $data = self::loadData();
@@ -83,8 +77,6 @@ class ChatTunnelHandler implements ITunnelHandler {
      * 会调用该方法，此时可以进行清理及通知操作
      */
     public function onClose($tunnelId) {
-        debug('ChatTunnelHandler[onClose] =>', compact('tunnelId'));
-
         $data = self::loadData();
         $leaveUser = NULL;
 
