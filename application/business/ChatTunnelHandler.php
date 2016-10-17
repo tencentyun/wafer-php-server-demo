@@ -47,7 +47,7 @@ class ChatTunnelHandler implements ITunnelHandler {
             ));
 
         } else {
-            Logger::debug("Unknown tunnelId({$tunnelId}) was connectd, close it");
+            debug("Unknown tunnelId({$tunnelId}) was connectd, close it");
             self::closeTunnel($tunnelId);
         }
     }
