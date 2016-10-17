@@ -5,9 +5,6 @@ require_once APPPATH.'third_party/QCloud_WeApp_SDK/AutoLoader.php';
 
 use \QCloud_WeApp_SDK\Conf as Conf;
 
-// 设置 SDK 环境变量（调试使用）
-putenv('DEBUG_SDK=yes');
-
 // Windows
 if (PHP_OS === 'WINNT') {
     $sdkConfig = 'C:\qcloud\sdk.config';
@@ -29,13 +26,40 @@ if (!is_array($config)) {
     die;
 }
 
-function get($field) {
+function take($field) {
     return isset($field) && is_string($field) ? $field : '';
 }
 
+/*
+ * --------------------------------------------------------------------
+ * 设置 SDK 基本配置
+ * --------------------------------------------------------------------
+ */
 Conf::setup(array(
-    'ServerHost' => get($config['serverHost']),
-    'AuthServerUrl' => get($config['authServerUrl']),
-    'TunnelServerUrl' => get($config['tunnelServerUrl']),
-    'TunnelSignatureKey' => get($config['tunnelSignatureKey']),
+    'ServerHost' => take($config['serverHost']),
+    'AuthServerUrl' => take($config['authServerUrl']),
+    'TunnelServerUrl' => take($config['tunnelServerUrl']),
+    'TunnelSignatureKey' => take($config['tunnelSignatureKey']),
 ));
+
+/**
+ * 也可以调用独立方法进行设置
+ *
+ * Conf::setServerHost(take($config['serverHost']));
+ * Conf::setAuthServerUrl(take($config['authServerUrl']));
+ * Conf::setTunnelServerUrl(take($config['tunnelServerUrl']));
+ * Conf::setTunnelSignatureKey(take($config['tunnelSignatureKey']));
+ */
+
+/*
+ * --------------------------------------------------------------------
+ * 设置 SDK 日志输出配置（主要是方便调试）
+ * --------------------------------------------------------------------
+ */
+
+// 指定 SDK 日志输出目录（注意尾斜杠不能省略）
+Conf::setLogPath(APPPATH.'logs/');
+
+// 默认是不打印 SDK 日志的
+// 1 => ERROR, 2 => DEBUG, 3 => INFO, 4 => ALL
+Conf::setLogThresholdArray(array(2)); // output debug log only
