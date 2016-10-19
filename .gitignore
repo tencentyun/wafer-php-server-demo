@@ -1,4 +1,5 @@
 sftp-config.json
 application/logs/*.log
 application/business/*.json
-QCloud_WeApp_SDK
+vendor/
+composer.lock
