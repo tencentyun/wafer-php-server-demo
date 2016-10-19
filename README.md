@@ -2,6 +2,16 @@
 
 本项目是 [腾讯云微信小程序服务端 SDK - PHP](https://github.com/CFETeam/qcloud-weapp-server-sdk-php) 的 使用示例。示例需要和 [微信小程序客户端示例](http://github.com/CFETeam/qcloud-weapp-client-demo) 配合一起使用。
 
+## 运行示例
+
+按照[小程序创建资源配置指引](https://github.com/CFETeam/weapp-doc)进行操作，可以得到运行本示例所需的资源和服务，其中包括已部署好的示例代码及自动下发的 SDK 配置文件 `/etc/qcloud/sdk.config`。
+
+- 示例代码部署目录：`/data/release/php-weapp-demo`
+- 运行示例的 nginx 配置文件: `/etc/nginx/conf.d/php-weapp-demo.conf`
+- PHP 版本：`v5.6.27`
+- composer 版本：`v1.2.1`
+- nginx 版本：`v1.10.1`
+
 ## 项目结构
 
 ```
@@ -66,13 +76,3 @@ Demo
 `application/business/ChatTunnelHandler.php` 是业务处理信道请求的示例代码。
 
 `application/helpers/general_helper.php` 包含简单的 `debug` 方法用于打印日志。
-
-## 运行示例
-
-按照[小程序创建资源配置指引](https://github.com/CFETeam/weapp-doc)进行操作，可以得到运行本示例所需的资源和服务，其中包括已部署好的示例代码及自动下发的 SDK 配置文件 `/etc/qcloud/sdk.config`。
-
-- 示例代码部署目录：`/data/release/php-weapp-demo`
-- 运行示例的 nginx 配置文件: `/etc/nginx/conf.d/php-weapp-demo.conf`
-- PHP 版本：`v5.6.27`
-- composer 版本：`v1.2.1`
-- nginx 版本：`v1.10.1`
