@@ -78,12 +78,15 @@ class ChatTunnelHandler implements ITunnelHandler {
      */
     public function onClose($tunnelId) {
         $data = self::loadData();
-        $leaveUser = NULL;
 
-        if (array_key_exists($tunnelId, $data['userMap'])) {
-            $leaveUser = $data['userMap'][$tunnelId];
-            unset($data['userMap'][$tunnelId]);
+        if (!array_key_exists($tunnelId, $data['userMap'])) {
+            debug('[onClose] 无效的信道 ID =>', $tunnelId);
+            self::closeTunnel($tunnelId);
+            return;
         }
+
+        $leaveUser = $data['userMap'][$tunnelId];
+        unset($data['userMap'][$tunnelId]);
 
         $index = array_search($tunnelId, $data['connectedTunnelIds']);
         if ($index !== FALSE) {
@@ -96,7 +99,7 @@ class ChatTunnelHandler implements ITunnelHandler {
         if (count($data['connectedTunnelIds']) > 0) {
             self::broadcast('people', array(
                 'total' => count($data['connectedTunnelIds']),
-                'leave' => !empty($leaveUser) ? $leaveUser : 'stranger',
+                'leave' => $leaveUser,
             ));
         }
     }
