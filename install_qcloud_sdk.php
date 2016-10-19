@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once APPPATH.'third_party/QCloud_WeApp_SDK/AutoLoader.php';
+// 加载 SDK
+require_once './vendor/autoload.php';
 
 use \QCloud_WeApp_SDK\Conf as Conf;
 
