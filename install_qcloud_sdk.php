@@ -57,6 +57,7 @@ Conf::setup(array(
  * 设置 SDK 日志输出配置（主要是方便调试）
  * --------------------------------------------------------------------
  */
+Conf::setEnableOutputLog(TRUE);
 
 // 指定 SDK 日志输出目录（注意尾斜杠不能省略）
 Conf::setLogPath(APPPATH.'logs/');
