@@ -27,41 +27,43 @@ if (!is_array($config)) {
     die;
 }
 
-function take($field) {
-    return isset($field) && is_string($field) ? $field : '';
-}
-
 /*
  * --------------------------------------------------------------------
  * 设置 SDK 基本配置
  * --------------------------------------------------------------------
  */
 Conf::setup(array(
-    'ServerHost' => take($config['serverHost']),
-    'AuthServerUrl' => take($config['authServerUrl']),
-    'TunnelServerUrl' => take($config['tunnelServerUrl']),
-    'TunnelSignatureKey' => take($config['tunnelSignatureKey']),
+    'ServerHost' => $config['serverHost'],
+    'AuthServerUrl' => $config['authServerUrl'],
+    'TunnelServerUrl' => $config['tunnelServerUrl'],
+    'TunnelSignatureKey' => $config['tunnelSignatureKey'],
 ));
 
 /**
  * 也可以调用独立方法进行设置
  *
- * Conf::setServerHost(take($config['serverHost']));
- * Conf::setAuthServerUrl(take($config['authServerUrl']));
- * Conf::setTunnelServerUrl(take($config['tunnelServerUrl']));
- * Conf::setTunnelSignatureKey(take($config['tunnelSignatureKey']));
+ * Conf::setServerHost($config['serverHost']);
+ * Conf::setAuthServerUrl($config['authServerUrl']);
+ * Conf::setTunnelServerUrl($config['tunnelServerUrl']);
+ * Conf::setTunnelSignatureKey($config['tunnelSignatureKey']);
  */
+
+// 设置网络请求超时时长（可选，默认 30 秒）
+Conf::setNetworkTimeout($config['networkTimeout']);
+
 
 /*
  * --------------------------------------------------------------------
  * 设置 SDK 日志输出配置（主要是方便调试）
  * --------------------------------------------------------------------
  */
+
+// 开启日志输出功能
 Conf::setEnableOutputLog(TRUE);
 
 // 指定 SDK 日志输出目录（注意尾斜杠不能省略）
 Conf::setLogPath(APPPATH.'logs/');
 
-// 默认是不打印 SDK 日志的
+// 设置日志输出级别
 // 1 => ERROR, 2 => DEBUG, 3 => INFO, 4 => ALL
 Conf::setLogThresholdArray(array(2)); // output debug log only
