@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // 加载 SDK
 require_once './vendor/autoload.php';
+// require_once './weapp-sdk/AutoLoader.php';
 
 use \QCloud_WeApp_SDK\Conf as Conf;
 
