@@ -2,4 +2,5 @@ sftp-config.json
 application/logs/*.log
 application/business/*.json
 vendor/
+weapp-sdk/
 composer.lock
