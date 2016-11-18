@@ -44,7 +44,7 @@ Demo
 └── system
 ```
 
-示例使用 CI 框架制作。其中，`index.php` 是 启动文件，`install_qcloud_sdk.php` 用于初始化 SDK 配置，配置从文件 `/etc/qcloud/sdk.config` 中读取。配置文件包含如下配置项：
+示例使用 `CodeIgniter(v3.1)` 框架制作。其中，`index.php` 是 启动文件，`install_qcloud_sdk.php` 用于初始化 SDK 配置，配置从文件 `/etc/qcloud/sdk.config` 中读取。配置文件包含如下配置项：
 
 ```json
 {
@@ -76,3 +76,7 @@ Demo
 `application/business/ChatTunnelHandler.php` 是业务处理信道请求的示例代码。
 
 `application/helpers/general_helper.php` 包含简单的 `debug` 方法用于打印日志。
+
+## 更新 SDK 版本
+
+进入目录 `/data/release/php-weapp-demo`，然后执行命令 `composer update` 即可。
