@@ -1,4 +1,4 @@
-# Wafer 服务端 DEMO - PHP
+# Wafer 服务端 Demo - PHP
 
 本仓库是 [Wafer](https://github.com/tencentyun/wafer) 组成部分，提供 PHP 版本业务服务器示例。示例需要和[微信小程序客户端示例](https://github.com/tencentyun/weapp-client-demo)配合一起使用。
 
