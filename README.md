@@ -1,11 +1,12 @@
-# 腾讯云微信小程序服务端 DEMO - PHP
+# Wafer 服务端 DEMO - PHP
 
-本项目是 [腾讯云微信小程序服务端 SDK - PHP](https://github.com/tencentyun/weapp-php-server-sdk) 的 使用示例。示例需要和 [微信小程序客户端示例](https://github.com/tencentyun/weapp-client-demo) 配合一起使用。
+本仓库是 [Wafer](https://github.com/tencentyun/wafer) 组成部分，提供 PHP 版本业务服务器示例。示例需要和[微信小程序客户端示例](https://github.com/tencentyun/weapp-client-demo)配合一起使用。
 
 ## 运行示例
 
-按照[小程序创建资源配置指引](https://github.com/tencentyun/weapp-doc)进行操作，可以得到运行本示例所需的资源和服务，其中包括已部署好的示例代码及自动下发的 SDK 配置文件 `/etc/qcloud/sdk.config`。
+选择合适的方式[部署 Wafer](https://github.com/tencentyun/wafer/wiki#%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F)，并按照[小程序创建资源配置指引](https://github.com/tencentyun/weapp-doc)进行操作，可以得到运行本示例所需的资源和服务。请参考以下配置。
 
+- SDK 配置文件：`/etc/qcloud/sdk.config`
 - 示例代码部署目录：`/data/release/php-weapp-demo`
 - 运行示例的 nginx 配置文件: `/etc/nginx/conf.d/php-weapp-demo.conf`
 - PHP 版本：`v5.6.27`
