@@ -52,9 +52,11 @@ Demo
     "serverHost": "业务服务器的主机名",
     "authServerUrl": "鉴权服务器地址",
     "tunnelServerUrl": "信道服务器地址",
-    "tunnelSignatureKey": "和信道服务器通信的签名密钥"
+    "tunnelSignatureKey": "和信道服务器通信的签名密钥",
+    "networkTimeout": 30000
 }
 ```
+其中 `networkTimeout` 为超时时间，单位是**毫秒**。
 
 `composer.json` 文件中声明了对 SDK 的依赖，可执行命令 `composer install` 安装依赖。
 
