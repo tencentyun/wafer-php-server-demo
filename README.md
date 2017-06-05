@@ -80,6 +80,6 @@ Demo
 
 `application/helpers/general_helper.php` 包含简单的 `debug` 方法用于打印日志。
 
-## 更新 SDK 版本
 
+## 更新 SDK 版本
 进入目录 `/data/release/php-weapp-demo`，然后执行命令 `composer update` 即可。
