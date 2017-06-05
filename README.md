@@ -84,10 +84,11 @@ Demo
 ## 更新 SDK 版本
 进入目录 `/data/release/php-weapp-demo`，然后执行命令 `composer update` 即可。
 
-##如果在demo基础上开发
+
+## 如果在demo基础上开发
 将自己开发的接口放到如下目录下即可生效
 /data/release/php-weapp-demo/application/controllers/
 
-重启服务：
+## 重启服务：
         service php-fpm restart
         
